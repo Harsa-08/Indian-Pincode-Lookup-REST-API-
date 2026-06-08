@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pincode-lookup-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: RAPIDAPI_PROXY_SECRET
+        sync: false  # The user will define their secret key in the Render dashboard
+      - key: DATABASE_URL
+        sync: false  # Connection string to your MySQL database (e.g., mysql://user:pass@host:port/dbname)
